@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soumya Sankar | Quantum Materials Researcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #3b82f6;
+            --accent2: #8b5cf6;
+            --accent3: #06b6d4;
+            --text: #f1f5f9;
+            --text-light: #94a3b8;
+            --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --gradient2: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            --card-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            color: var(--text);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            background-color: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            padding-top: 140px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-text h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--text-light);
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 35px;
+            max-width: 700px;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* About */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .education-item {
+            background: var(--card-bg);
+            border-left: 3px solid var(--accent);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateX(5px);
+        }
+
+        .education-year {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        /* Publications */
+        .publications-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .publication-item {
+            background: var(--card-bg);
+            border-left: 3px solid transparent;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .publication-item:hover {
+            transform: translateY(-2px);
+            border-left-color: var(--accent);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .publication-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .publication-title {
+            font-size: 1.2rem;
+            color: var(--text);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .publication-journal {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .publication-year {
+            background: var(--gradient);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .publication-authors {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .publication-authors strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .publication-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .pub-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pub-link:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Expertise */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .expertise-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .expertise-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .expertise-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .expertise-list li {
+            margin-bottom: 8px;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.95rem;
+        }
+
+        .expertise-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Teaching & Awards */
+        .teaching-grid, .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .teaching-card, .award-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .teaching-card:hover, .award-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+
+        .teaching-semester, .award-year {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .teaching-course, .award-title {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .teaching-role, .award-details {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Contact */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--text);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
+            border-color: var(--accent);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: var(--text);
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .contact-form button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0f1c;
+            padding: 60px 0 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .footer-logo p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content,
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                padding: 25px 0;
+                gap: 20px;
+                box-shadow: var(--shadow);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding-top: 120px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 25px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .publication-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .publication-year {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">SS</a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#teaching">Teaching</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Soumya Sankar</h1>
+                    <h2>Quantum Materials Researcher</h2>
+                    <p>Ph.D. candidate in Physics at The Hong Kong University of Science and Technology. Specializing in epitaxial thin-film synthesis of topological materials and quantum transport phenomena in kagome lattice compounds.</p>
+                    <div class="cta-buttons">
+                        <a href="#publications" class="btn btn-primary">
+                            <i class="fas fa-file-alt"></i> View Publications
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Contact Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am an experimental physicist with expertise in molecular beam epitaxy (MBE), nanofabrication, and advanced magnetotransport measurements. My research focuses on topological phenomena in kagome lattice compounds and their potential applications in quantum technologies.</p>
+                    <p>My current work involves investigating nonlinear Hall responses, anomalous in-plane Hall effects, and Berry curvature phenomena in magnetic Weyl semimetals and altermagnets at room temperature.</p>
+                </div>
+                <div class="education">
+                    <div class="education-item">
+                        <div class="education-year">2021 - Present</div>
+                        <h3>Ph.D. Candidate in Physics</h3>
+                        <p>The Hong Kong University of Science and Technology</p>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="education-year">2017 - 2019</div>
+                        <h3>M.Sc. in Physics (First Class)</h3>
+                        <p>Central University of Karnataka • CGPA: 8.29/10.00</p>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="education-year">2014 - 2017</div>
+                        <h3>B.Sc. in Physics (First Class with Distinction)</h3>
+                        <p>Utkal University • Score: 85.5/100</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+        <div class="container">
+            <h2 class="section-title">Publications</h2>
+            <div class="publications-container">
+                <!-- Paper 6 (Most recent from CV) -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div>
+                            <h3 class="publication-title">Nematic Order and Orbital Selective Mott State in a Partially Filled Kagome Flat Band</h3>
+                            <div class="publication-journal">Physical Review X 16, 011009 (2026)</div>
+                        </div>
+                        <div class="publication-year">2026</div>
+                    </div>
+                    <div class="publication-authors">
+                        <strong>C. Chen</strong>, J. Zheng, Y. He, S. Wu, X. Ying, <strong>S. Sankar</strong>, L. Li, Y. Wei, X. Dai, H. C. Po, B. Jäck
+                    </div>
+                    <div class="publication-links">
+                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> Full Text</a>
+                        <a href="#" class="pub-link"><i class="fas fa-quote-right"></i> Cite</a>
+                    </div>
+                </div>
+
+                <!-- Paper 5 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div>
+                            <h3 class="publication-title">Broadband nonlinear Hall response and multiple wave mixing in a room temperature altermagnet</h3>
+                            <div class="publication-journal">arXiv:2511.10471 (2025) - Submitted</div>
+                        </div>
+                        <div class="publication-year">2025</div>
+                    </div>
+                    <div class="publication-authors">
+                        <strong>S. Sankar</strong>, X. Cheng, X. Chen, X. Fu, T. Urata, W. Hattori, W. Lu, Z. Lin, D. Chen, C. Felser, H. Ikuta, J. Ma, J. Liu, B. Jäck
+                    </div>
+                    <div class="publication-links">
+                        <a href="https://arxiv.org/abs/2511.10471" class="pub-link" target="_blank"><i class="fas fa-external-link-alt"></i> arXiv</a>
+                    </div>
+                </div>
+
+                <!-- Paper 4 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div>
+                            <h3 class="publication-title">Room temperature observation of the anomalous in-plane Hall effect in epitaxial thin films of a Weyl ferromagnet</h3>
+                            <div class="publication-journal">Nature Communications 17, 423 (2025)</div>
+                        </div>
+                        <div class="publication-year">2025</div>
+                    </div>
+                    <div class="publication-authors">
+                        <strong>S. Sankar</strong>, X. Cheng, T. Murtaza, C. Chen, Y. Qin, Q. Shao, R. Lortz, J. Liu, X. Wu, B. Jäck
+                    </div>
+                    <div class="publication-links">
+                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> Full Text</a>
+                        <a href="#" class="pub-link"><i class="fas fa-quote-right"></i> Cite</a>
+                    </div>
+                </div>
+
+                <!-- Paper 3 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div>
+                            <h3 class="publication-title">Experimental Evidence for a Berry Curvature Quadrupole in an Antiferromagnet</h3>
+                            <div class="publication-journal">Physical Review X 14, 021046 (2024)</div>
+                        </div>
+                        <div class="publication-year">2024</div>
+                    </div>
+                    <div class="publication-authors">
+                        <strong>S. Sankar</strong>, R. Liu, C. P. Zhang, Q. F. Li, C. Chen, X. J. Gao, J. Zheng, Y. H. Lin, K. Qian, R. P. Yu, X. Zhang, Z. Y. Meng, K. T. Law, Q. Shao, B. Jäck
+                    </div>
+                    <div class="publication-links">
+                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> Full Text</a>
+                        <a href="#" class="pub-link"><i class="fas fa-quote-right"></i> Cite</a>
+                    </div>
+                </div>
+
+                <!-- Paper 2 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div>
+                            <h3 class="publication-title">Visualizing the localized electrons of a kagome flat band</h3>
+                            <div class="publication-journal">Physical Review Research 5, 043269 (2023)</div>
+                        </div>
+                        <div class="publication-year">2023</div>
+                    </div>
+                    <div class="publication-authors">
+                        C. Chen, J. Zheng, R. Yu, <strong>S. Sankar</strong>, K. T. Law, H. C. Po, B. Jäck
+                    </div>
+                    <div class="publication-links">
+                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> Full Text</a>
+                        <a href="#" class="pub-link"><i class="fas fa-quote-right"></i> Cite</a>
+                    </div>
+                </div>
+
+                <!-- Paper 1 (Oldest) -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div>
+                            <h3 class="publication-title">Giant Photoresponsivity of Transfer-Free Grown Fluorographene-MoS2 Heterostructured Ultra-Stable Transistors</h3>
+                            <div class="publication-journal">Material Today 51, 85-94 (2021)</div>
+                        </div>
+                        <div class="publication-year">2021</div>
+                    </div>
+                    <div class="publication-authors">
+                        R. Sharma, P. Sharma, K. R. Sahoo, <strong>S. Sankar</strong>, V.P.S. Awana, M. Kumar, T. N. Narayanan
+                    </div>
+                    <div class="publication-links">
+                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> Full Text</a>
+                        <a href="#" class="pub-link"><i class="fas fa-quote-right"></i> Cite</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise -->
+    <section id="expertise">
+        <div class="container">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Thin-Film Synthesis</h3>
+                    <ul class="expertise-list">
+                        <li>Molecular Beam Epitaxy (MBE) of kagome compounds (FeSn, Fe₃Sn, Co₃Sn)</li>
+                        <li>Real-time RHEED monitoring</li>
+                        <li>Thin-film growth optimization</li>
+                        <li>XRD, XRR, phi-scans analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Nanofabrication</h3>
+                    <ul class="expertise-list">
+                        <li>Multi-step optical lithography</li>
+                        <li>Hall bar device fabrication (6- & 12-terminal)</li>
+                        <li>Focused Ion Beam (FIB) milling</li>
+                        <li>Device prototyping</li>
+                    </ul>
+                </div>
+                
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Characterization</h3>
+                    <ul class="expertise-list">
+                        <li>STEM/TEM for atomic-scale imaging</li>
+                        <li>AFM surface analysis</li>
+                        <li>Nonlinear Hall effect measurements</li>
+                        <li>In-plane electric Hall effect</li>
+                        <li>Full-wave mixing measurements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching -->
+    <section id="teaching">
+        <div class="container">
+            <h2 class="section-title">Teaching Experience</h2>
+            <div class="teaching-grid">
+                <div class="teaching-card">
+                    <div class="teaching-semester">Spring 2021-22</div>
+                    <h3 class="teaching-course">PHYS 3152</h3>
+                    <p class="teaching-role">Teaching Assistant - Methods of Experimental Physics I</p>
+                    <p class="teaching-details">The Hong Kong University of Science and Technology</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="teaching-semester">Fall 2022-23</div>
+                    <h3 class="teaching-course">PHYS 3152</h3>
+                    <p class="teaching-role">Teaching Assistant - Methods of Experimental Physics I</p>
+                    <p class="teaching-details">The Hong Kong University of Science and Technology</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="teaching-semester">Spring 2022-23</div>
+                    <h3 class="teaching-course">PHYS 1314</h3>
+                    <p class="teaching-role">Teaching Assistant - Honors General Physics II</p>
+                    <p class="teaching-details">The Hong Kong University of Science and Technology</p>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="teaching-semester">Fall 2023-24</div>
+                    <h3 class="teaching-course">PHYS 1003</h3>
+                    <p class="teaching-role">Teaching Assistant - Energy and Related Environmental Issues</p>
+                    <p class="teaching-details">The Hong Kong University of Science and Technology</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards -->
+    <section id="awards">
+        <div class="container">
+            <h2 class="section-title">Awards & Fellowships</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-year">2024</div>
+                    <h3 class="award-title">Hong Kong UGC Travel Grant</h3>
+                    <p class="award-details">For APS March Meeting 2024 in Minneapolis, USA</p>
+                </div>
+                
+                <div class="award-card">
+                    <div class="award-year">2023</div>
+                    <h3 class="award-title">Hong Kong UGC Travel Grant</h3>
+                    <p class="award-details">For APS March Meeting 2023 in Las Vegas, USA</p>
+                </div>
+                
+                <div class="award-card">
+                    <div class="award-year">2021-2025</div>
+                    <h3 class="award-title">HKUST Postgraduate Scholarship (PGS)</h3>
+                    <p class="award-details">For Ph.D. studies at HKUST</p>
+                </div>
+                
+                <div class="award-card">
+                    <div class="award-year">2018-2019</div>
+                    <h3 class="award-title">Indo-Max Planck Partner Group Fellowship</h3>
+                    <p class="award-details">Research fellowship for advanced physics studies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>For research collaborations, opportunities, or inquiries about my work.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>ssankar@connect.ust.hk</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>The Hong Kong University of Science and Technology<br>Clear Water Bay, Kowloon<br>Hong Kong SAR</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h4>Department</h4>
+                            <p>Department of Physics</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject" required>
+                    <textarea rows="6" placeholder="Your Message" required></textarea>
+                    <button type="submit">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Soumya Sankar</h3>
+                    <p>Quantum Materials Researcher</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link" title="ResearchGate">
+                        <i class="fab fa-researchgate"></i>
+                    </a>
+                    <a href="#" class="social-link" title="Google Scholar">
+                        <i class="fab fa-google-scholar"></i>
+                    </a>
+                    <a href="#" class="social-link" title="ORCID">
+                        <i class="fab fa-orcid"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Soumya Sankar. All rights reserved.</p>
+                <p>Ph.D. Candidate, Department of Physics, The Hong Kong University of Science and Technology</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const subject = this.querySelectorAll('input[type="text"]')[1].value;
+            const message = this.querySelector('textarea').value;
+            
+            if (name && email && subject && message) {
+                alert(`Thank you for your message, ${name}! I will get back to you soon.`);
+                this.reset();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = `fadeInUp 0.6s ease both`;
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.publication-item, .expertise-card, .teaching-card, .award-card, .education-item, .contact-item').forEach((el) => {
+                el.style.opacity = '0';
+                observer.observe(el);
+            });
+        });
+        
+        // Highlight current section
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
