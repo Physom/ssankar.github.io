@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=JetBrains+Mono:wght@300..500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
     <style>
-        /* ----- white background with vibrant, visible accents ----- */
+        /* ----- CSS variables for light/dark themes ----- */
         * {
             margin: 0;
             padding: 0;
@@ -17,20 +17,21 @@
         }
 
         :root {
-            --primary: #ffffff;
-            --secondary: #f8fafc;
-            --tertiary: #f1f5f9;
-            --accent-blue: #1e4b8a;        /* darker blue for visibility on white */
-            --accent-purple: #6b21a5;        /* darker purple */
-            --accent-cyan: #0e7490;           /* darker cyan */
-            --accent-pink: #b91c6b;            /* darker pink */
+            /* light theme (default) */
+            --primary-bg: #ffffff;
+            --secondary-bg: #f8fafc;
+            --tertiary-bg: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.85);
             --text-primary: #0f172a;
             --text-secondary: #334155;
             --text-muted: #64748b;
+            --accent-blue: #1e4b8a;
+            --accent-purple: #6b21a5;
+            --accent-cyan: #0e7490;
+            --accent-pink: #b91c6b;
             --gradient-primary: linear-gradient(135deg, #1e4b8a, #6b21a5, #0e7490, #b91c6b);
             --gradient-secondary: linear-gradient(135deg, #0e7490, #1e4b8a, #6b21a5);
             --gradient-dark: linear-gradient(135deg, #ffffff, #f1f5f9);
-            --card-bg: rgba(255, 255, 255, 0.85);
             --card-border: rgba(30, 75, 138, 0.25);
             --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
             --shadow-glow: 0 15px 35px rgba(30, 75, 138, 0.2), 0 0 0 1px rgba(107, 33, 165, 0.15);
@@ -38,6 +39,44 @@
             --glow-purple: 0 0 20px rgba(107, 33, 165, 0.25);
             --glow-cyan: 0 0 20px rgba(14, 116, 144, 0.25);
             --glow-pink: 0 0 20px rgba(185, 28, 107, 0.25);
+            --grid-color1: rgba(30, 75, 138, 0.08);
+            --grid-color2: rgba(107, 33, 165, 0.08);
+            --lattice-opacity: 0.2;
+            --particle-alpha: 0.25;
+            --line-color: rgba(30,75,138,0.15);
+            --header-bg: rgba(255, 255, 255, 0.85);
+            --header-border: rgba(30, 75, 138, 0.15);
+        }
+
+        body.dark {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1e293b;
+            --tertiary-bg: #334155;
+            --card-bg: rgba(30, 41, 59, 0.85);
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-blue: #60a5fa;
+            --accent-purple: #c084fc;
+            --accent-cyan: #22d3ee;
+            --accent-pink: #fb7185;
+            --gradient-primary: linear-gradient(135deg, #60a5fa, #c084fc, #22d3ee, #fb7185);
+            --gradient-secondary: linear-gradient(135deg, #22d3ee, #60a5fa, #c084fc);
+            --gradient-dark: linear-gradient(135deg, #0f172a, #1e293b);
+            --card-border: rgba(96, 165, 250, 0.25);
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 15px 35px rgba(96, 165, 250, 0.3), 0 0 0 1px rgba(192, 132, 252, 0.2);
+            --glow-blue: 0 0 20px rgba(96, 165, 250, 0.4);
+            --glow-purple: 0 0 20px rgba(192, 132, 252, 0.4);
+            --glow-cyan: 0 0 20px rgba(34, 211, 238, 0.4);
+            --glow-pink: 0 0 20px rgba(251, 113, 133, 0.4);
+            --grid-color1: rgba(96, 165, 250, 0.1);
+            --grid-color2: rgba(192, 132, 252, 0.1);
+            --lattice-opacity: 0.25;
+            --particle-alpha: 0.3;
+            --line-color: rgba(96,165,250,0.2);
+            --header-bg: rgba(15, 23, 42, 0.85);
+            --header-border: rgba(96, 165, 250, 0.2);
         }
 
         html {
@@ -47,14 +86,15 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--primary);
+            background: var(--primary-bg);
             color: var(--text-primary);
             line-height: 1.7;
             overflow-x: hidden;
             position: relative;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* ----- ANIME-STYLE BACKGROUND: fast, connected, energetic ----- */
+        /* ----- BACKGROUND (using variables) ----- */
         .background-effects {
             position: fixed;
             inset: 0;
@@ -68,10 +108,10 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(30, 75, 138, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(107, 33, 165, 0.08) 1px, transparent 1px);
+                linear-gradient(var(--grid-color1) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color2) 1px, transparent 1px);
             background-size: 50px 50px;
-            animation: gridMove 30s linear infinite; /* faster grid */
+            animation: gridMove 30s linear infinite;
         }
 
         @keyframes gridMove {
@@ -89,9 +129,9 @@
             position: absolute;
             border-radius: 50%;
             background: var(--gradient-primary);
-            opacity: 0.08;   /* slightly more visible */
+            opacity: 0.08;
             filter: blur(60px);
-            animation: levitate 12s infinite alternate ease-in-out; /* faster */
+            animation: levitate 12s infinite alternate ease-in-out;
         }
 
         .floating-shape:nth-child(1) { width: 400px; height: 400px; top: 10%; left: 5%; }
@@ -103,7 +143,6 @@
             100% { transform: translate(40px, -40px) scale(1.1); }
         }
 
-        /* LATTICES – now with fast, dynamic, and connected feel (using multiple animations) */
         .floating-lattices {
             position: absolute;
             width: 100%;
@@ -112,17 +151,16 @@
 
         .lattice-icon {
             position: absolute;
-            opacity: 0.2;
+            opacity: var(--lattice-opacity);
             background: transparent;
             filter: drop-shadow(0 0 15px currentColor);
-            animation-duration: 8s, 10s, 6s; /* multiple faster animations */
+            animation-duration: 8s, 10s, 6s;
             animation-timing-function: ease-in-out, ease-in-out, linear;
             animation-iteration-count: infinite, infinite, infinite;
             animation-direction: alternate, alternate, normal;
             color: var(--accent-blue);
         }
 
-        /* each lattice gets unique combos for variety */
         .lattice-icon.sc {
             width: 280px;
             height: 280px;
@@ -239,7 +277,7 @@
             gap: 20px;
             padding: 20px;
             background: transparent;
-            opacity: 0.2;
+            opacity: var(--lattice-opacity);
             animation-name: fastDrift7, fastPulse, spinMedium;
         }
         .lattice-icon.altermagnet span {
@@ -258,7 +296,7 @@
             left: 45%;
             background: repeating-linear-gradient(60deg, transparent, transparent 18px, var(--accent-cyan) 18px, var(--accent-cyan) 20px),
                         repeating-linear-gradient(120deg, transparent, transparent 18px, var(--accent-cyan) 18px, var(--accent-cyan) 20px);
-            opacity: 0.2;
+            opacity: var(--lattice-opacity);
             animation-name: fastDrift8, fastZigZag, spinSlow;
             color: var(--accent-cyan);
         }
@@ -270,12 +308,12 @@
             right: 35%;
             background: repeating-linear-gradient(30deg, transparent, transparent 20px, var(--accent-purple) 20px, var(--accent-purple) 22px),
                         repeating-linear-gradient(90deg, transparent, transparent 20px, var(--accent-purple) 20px, var(--accent-purple) 22px);
-            opacity: 0.2;
+            opacity: var(--lattice-opacity);
             animation-name: fastDrift9, fastDiagonal, spinFast;
             color: var(--accent-purple);
         }
 
-        /* Fast and dynamic keyframes */
+        /* Fast and dynamic keyframes (unchanged) */
         @keyframes fastDrift1 { 0% { transform: translate(0,0); } 100% { transform: translate(30px, -20px); } }
         @keyframes fastDrift2 { 0% { transform: translate(0,0); } 100% { transform: translate(-25px, 30px); } }
         @keyframes fastDrift3 { 0% { transform: translate(0,0); } 100% { transform: translate(20px, 20px); } }
@@ -292,7 +330,7 @@
         @keyframes fastSwing { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(8deg) scale(1.1); } 100% { transform: rotate(-8deg) scale(1); } }
         @keyframes fastSkew { 0% { transform: skew(0deg, 0deg); } 100% { transform: skew(5deg, -5deg); } }
         @keyframes fastWarp { 0% { transform: scale(1) rotate(0deg); } 100% { transform: scale(1.1) rotate(10deg); } }
-        @keyframes fastPulse { 0% { opacity: 0.2; } 50% { opacity: 0.3; } 100% { opacity: 0.2; } }
+        @keyframes fastPulse { 0% { opacity: var(--lattice-opacity); } 50% { opacity: calc(var(--lattice-opacity) + 0.1); } 100% { opacity: var(--lattice-opacity); } }
         @keyframes fastZigZag { 0% { transform: translateX(0); } 33% { transform: translateX(20px); } 66% { transform: translateX(-20px); } 100% { transform: translateX(0); } }
         @keyframes fastDiagonal { 0% { transform: translate(0,0); } 50% { transform: translate(20px, -20px); } 100% { transform: translate(-20px, 20px); } }
 
@@ -307,7 +345,7 @@
             pointer-events: none;
         }
 
-        /* ----- rest of the styles (unchanged from previous white version) ----- */
+        /* ----- container & sections ----- */
         .container {
             width: 90%;
             max-width: 1200px;
@@ -351,16 +389,16 @@
             width: 100%;
             z-index: 1000;
             padding: 25px 0;
-            background: rgba(255, 255, 255, 0.85);
+            background: var(--header-bg);
             backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(30, 75, 138, 0.15);
+            border-bottom: 1px solid var(--header-border);
             transition: all 0.4s ease;
         }
 
         header.scrolled {
             padding: 15px 0;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            background: var(--header-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
         .header-container {
@@ -388,9 +426,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.1);
             border-radius: 24px;
-            box-shadow: 0 0 40px rgba(30,75,138,0.25);
+            box-shadow: 0 0 40px var(--glow-blue);
             transition: transform 0.4s ease;
         }
 
@@ -406,38 +444,38 @@
             box-shadow: 0 0 20px currentColor;
         }
 
-        .kagome-atom:nth-child(1) { background: #1e4b8a; top: 15px; left: 40px; }
-        .kagome-atom:nth-child(2) { background: #6b21a5; top: 30px; right: 25px; }
-        .kagome-atom:nth-child(3) { background: #0e7490; bottom: 30px; right: 25px; }
-        .kagome-atom:nth-child(4) { background: #b91c6b; bottom: 15px; left: 40px; }
-        .kagome-atom:nth-child(5) { background: #6b21a5; bottom: 30px; left: 10px; }
-        .kagome-atom:nth-child(6) { background: #1e4b8a; top: 30px; left: 10px; }
+        .kagome-atom:nth-child(1) { background: var(--accent-blue); top: 15px; left: 40px; }
+        .kagome-atom:nth-child(2) { background: var(--accent-purple); top: 30px; right: 25px; }
+        .kagome-atom:nth-child(3) { background: var(--accent-cyan); bottom: 30px; right: 25px; }
+        .kagome-atom:nth-child(4) { background: var(--accent-pink); bottom: 15px; left: 40px; }
+        .kagome-atom:nth-child(5) { background: var(--accent-purple); bottom: 30px; left: 10px; }
+        .kagome-atom:nth-child(6) { background: var(--accent-blue); top: 30px; left: 10px; }
         .kagome-atom:nth-child(7) {
-            background: #0f172a;
+            background: var(--text-primary);
             width: 24px;
             height: 24px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 30px #1e4b8a;
+            box-shadow: 0 0 30px var(--accent-blue);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 14px;
-            color: white;
+            color: var(--primary-bg);
             font-weight: bold;
         }
         .kagome-atom:nth-child(7)::after {
             content: "↑↓";
             font-size: 14px;
-            color: white;
+            color: var(--primary-bg);
             font-weight: 800;
         }
 
         .kagome-line {
             position: absolute;
-            background: rgba(15,23,42,0.3);
-            box-shadow: 0 0 10px #1e4b8a;
+            background: var(--text-secondary);
+            box-shadow: 0 0 10px var(--accent-blue);
             height: 2px;
             width: 40px;
             transform-origin: 0 0;
@@ -456,8 +494,8 @@
             font-weight: bold;
             text-shadow: 0 0 10px currentColor;
         }
-        .spin-up { color: #b91c6b; }
-        .spin-down { color: #1e4b8a; }
+        .spin-up { color: var(--accent-pink); }
+        .spin-down { color: var(--accent-blue); }
         .spin-up:nth-of-type(1) { top: 5px; left: 15px; transform: rotate(-20deg); }
         .spin-up:nth-of-type(2) { bottom: 5px; right: 15px; transform: rotate(160deg); }
         .spin-down:nth-of-type(1) { top: 5px; right: 15px; transform: rotate(200deg); }
@@ -507,6 +545,19 @@
             cursor: pointer;
         }
 
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: transform 0.3s;
+        }
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+
         .hero {
             padding-top: 180px;
             min-height: 100vh;
@@ -528,15 +579,15 @@
         }
 
         @keyframes pulse {
-            0%,100% { box-shadow: 0 0 0 0 rgba(30,75,138,0.5); }
-            50% { box-shadow: 0 0 0 10px rgba(30,75,138,0); }
+            0%,100% { box-shadow: 0 0 0 0 var(--accent-blue); }
+            50% { box-shadow: 0 0 0 10px transparent; }
         }
 
         .hero-text h1 {
             font-family: 'Playfair Display', serif;
             font-size: 5rem;
             line-height: 1;
-            background: linear-gradient(135deg, #0f172a, #1e4b8a, #6b21a5);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -545,7 +596,7 @@
 
         .hero-text h2 {
             font-size: 2.2rem;
-            color: #334155;
+            color: var(--text-secondary);
             font-weight: 500;
             margin-bottom: 0;
         }
@@ -607,11 +658,12 @@
         }
 
         .btn-secondary:hover {
-            background: rgba(30,75,138,0.05);
+            background: rgba(var(--accent-blue), 0.1);
             transform: scale(1.05) translateY(-3px);
             border-color: var(--accent-blue);
         }
 
+        /* ----- about, publications, etc ----- */
         .about-content {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -686,7 +738,7 @@
         .publication-item:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-glow);
-            border-color: rgba(107,33,165,0.3);
+            border-color: rgba(var(--accent-purple), 0.3);
         }
 
         .publication-title {
@@ -703,7 +755,7 @@
             margin-bottom: 5px;
             display: inline-block;
             padding: 4px 16px;
-            background: rgba(185,28,107,0.08);
+            background: rgba(var(--accent-pink), 0.08);
             border-radius: 30px;
         }
 
@@ -715,7 +767,7 @@
         }
 
         .publication-authors strong {
-            background: linear-gradient(135deg, #1e4b8a, #6b21a5);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -742,7 +794,7 @@
 
         .expertise-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(107,33,165,0.3);
+            border-color: rgba(var(--accent-purple), 0.3);
             box-shadow: var(--shadow-glow);
         }
 
@@ -792,13 +844,13 @@
             font-size: 1.2rem;
         }
 
-        .teaching-grid, .awards-grid {
+        .teaching-grid, .awards-grid, .leadership-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
-        .teaching-card, .award-card {
+        .teaching-card, .award-card, .leadership-card {
             background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
@@ -808,13 +860,13 @@
             box-shadow: var(--shadow-soft);
         }
 
-        .teaching-card:hover, .award-card:hover {
+        .teaching-card:hover, .award-card:hover, .leadership-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(107,33,165,0.3);
+            border-color: rgba(var(--accent-purple), 0.3);
             box-shadow: var(--shadow-glow);
         }
 
-        .teaching-semester, .award-year {
+        .teaching-semester, .award-year, .leadership-period {
             color: var(--accent-cyan);
             font-weight: 600;
             font-size: 0.95rem;
@@ -822,13 +874,13 @@
             letter-spacing: 1px;
         }
 
-        .teaching-course, .award-title {
+        .teaching-course, .award-title, .leadership-role {
             font-size: 1.3rem;
             margin-bottom: 10px;
             color: var(--text-primary);
         }
 
-        .teaching-role, .award-details {
+        .teaching-role, .award-details, .leadership-details {
             color: var(--text-secondary);
             font-size: 1rem;
             line-height: 1.6;
@@ -886,9 +938,9 @@
         }
 
         footer {
-            background: var(--secondary);
+            background: var(--secondary-bg);
             padding: 80px 0 30px;
-            border-top: 1px solid rgba(185,28,107,0.15);
+            border-top: 1px solid rgba(var(--accent-pink), 0.15);
         }
 
         .footer-content {
@@ -961,7 +1013,7 @@
 
         @media (max-width: 900px) {
             .nav-links {
-                position: fixed; top: 0; left: -100%; width: 70%; height: 100vh; background: rgba(255,255,255,0.98); flex-direction: column; justify-content: center; align-items: center; transition: left 0.4s; backdrop-filter: blur(20px); border-right: 1px solid #1e4b8a;
+                position: fixed; top: 0; left: -100%; width: 70%; height: 100vh; background: var(--card-bg); flex-direction: column; justify-content: center; align-items: center; transition: left 0.4s; backdrop-filter: blur(20px); border-right: 1px solid var(--accent-blue);
             }
             .nav-links.active { left: 0; }
             .mobile-menu-btn { display: block; }
@@ -1025,16 +1077,22 @@
                 </div>
                 <span>Soumya Sankar</span>
             </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#teaching">Teaching</a></li>
-                <li><a href="#awards">Awards</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <div style="display: flex; align-items: center;">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#teaching">Teaching</a></li>
+                    <li><a href="#awards">Awards</a></li>
+                    <li><a href="#leadership">Leadership</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+            </div>
         </div>
     </header>
 
@@ -1206,6 +1264,30 @@
         </div>
     </section>
 
+    <!-- New Leadership Section -->
+    <section id="leadership">
+        <div class="container">
+            <h2 class="section-title">Leadership & Service</h2>
+            <div class="leadership-grid">
+                <div class="leadership-card">
+                    <div class="leadership-period">YEAR 02</div>
+                    <h3 class="leadership-role">Student Representative</h3>
+                    <p class="leadership-details">Department of Physics, HKUST<br>Advocated for graduate student concerns and facilitated department-student communication.</p>
+                </div>
+                <div class="leadership-card">
+                    <div class="leadership-period">YEAR 04</div>
+                    <h3 class="leadership-role">Student Representative</h3>
+                    <p class="leadership-details">Department of Physics, HKUST<br>Organized academic and social events, represented student body in faculty meetings.</p>
+                </div>
+                <div class="leadership-card">
+                    <div class="leadership-period">SEPT 2025 – PRESENT</div>
+                    <h3 class="leadership-role">Research Assistant</h3>
+                    <p class="leadership-details">HKUST, Hong Kong<br>Conducting experimental research on quantum materials, assisting in lab management and mentoring junior students.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact">
         <div class="container">
             <h2 class="section-title">Get in touch</h2>
@@ -1236,6 +1318,31 @@
 
     <script>
         (function() {
+            // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            const icon = themeToggle.querySelector('i');
+
+            if (localStorage.getItem('theme') === 'dark') {
+                body.classList.add('dark');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // Mobile menu
             const menuBtn = document.getElementById('mobileMenuBtn');
             const nav = document.getElementById('navLinks');
             menuBtn.addEventListener('click', () => {
@@ -1267,29 +1374,43 @@
                 entries.forEach(e => e.isIntersecting && e.target.classList.add('fade-in'));
             }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-            document.querySelectorAll('.about-text, .about-highlight, .education, .expertise-card, .teaching-card, .award-card, .contact-info, .publication-item').forEach(el => {
+            document.querySelectorAll('.about-text, .about-highlight, .education, .expertise-card, .teaching-card, .award-card, .leadership-card, .contact-info, .publication-item').forEach(el => {
                 el.style.opacity = '0';
                 observer.observe(el);
             });
 
-            // Enhanced particle system: more particles, faster, more connections
+            // Enhanced particle system
             const canvas = document.getElementById('particles-canvas');
             const ctx = canvas.getContext('2d');
             let w = canvas.width = window.innerWidth;
             let h = canvas.height = window.innerHeight;
 
+            function getColors() {
+                const isDark = body.classList.contains('dark');
+                return {
+                    blue: isDark ? '#60a5fa' : '#1e4b8a',
+                    purple: isDark ? '#c084fc' : '#6b21a5',
+                    cyan: isDark ? '#22d3ee' : '#0e7490',
+                };
+            }
+
             class Particle {
                 constructor() {
+                    this.reset();
+                }
+                reset() {
                     this.x = Math.random() * w;
                     this.y = Math.random() * h;
-                    this.size = Math.random() * 4 + 1.5; // slightly larger
-                    this.vx = (Math.random() - 0.5) * 0.8; // faster
+                    this.size = Math.random() * 4 + 1.5;
+                    this.vx = (Math.random() - 0.5) * 0.8;
                     this.vy = (Math.random() - 0.5) * 0.8;
-                    this.color = Math.random() > 0.33 ? '#1e4b8a' : (Math.random() > 0.5 ? '#6b21a5' : '#0e7490');
+                    const cols = getColors();
+                    const r = Math.random();
+                    this.color = r > 0.33 ? cols.blue : (r > 0.66 ? cols.purple : cols.cyan);
                     this.alpha = Math.random() * 0.3 + 0.15;
                 }
                 update() {
-                    this.x += this.vx + Math.sin(Date.now()*0.002)*0.1; // more wave
+                    this.x += this.vx + Math.sin(Date.now()*0.002)*0.1;
                     this.y += this.vy + Math.cos(Date.now()*0.002)*0.1;
                     if(this.x > w) this.x = 0; else if(this.x < 0) this.x = w;
                     if(this.y > h) this.y = 0; else if(this.y < 0) this.y = h;
@@ -1302,19 +1423,21 @@
                     ctx.fill();
                 }
             }
-            let particles = Array.from({ length: 120 }, () => new Particle()); // more particles
+
+            let particles = Array.from({ length: 120 }, () => new Particle());
+
             function animate() {
                 ctx.clearRect(0,0,w,h);
                 particles.forEach(p => { p.update(); p.draw(); });
-                // Draw connections between nearby particles (thicker, more opaque)
-                ctx.strokeStyle = 'rgba(30,75,138,0.15)';
+                const cols = getColors();
+                ctx.strokeStyle = body.classList.contains('dark') ? 'rgba(96,165,250,0.2)' : 'rgba(30,75,138,0.15)';
                 ctx.lineWidth = 1.2;
                 for(let i=0; i<particles.length; i++) {
                     for(let j=i+1; j<particles.length; j++) {
                         const dx = particles[i].x - particles[j].x;
                         const dy = particles[i].y - particles[j].y;
                         const d = Math.hypot(dx, dy);
-                        if(d < 140) { // increased range
+                        if(d < 140) {
                             ctx.beginPath();
                             ctx.moveTo(particles[i].x, particles[i].y);
                             ctx.lineTo(particles[j].x, particles[j].y);
@@ -1329,6 +1452,15 @@
             window.addEventListener('resize', () => {
                 w = canvas.width = window.innerWidth;
                 h = canvas.height = window.innerHeight;
+                particles.forEach(p => p.reset());
+            });
+
+            themeToggle.addEventListener('click', () => {
+                particles.forEach(p => {
+                    const cols = getColors();
+                    const r = Math.random();
+                    p.color = r > 0.33 ? cols.blue : (r > 0.66 ? cols.purple : cols.cyan);
+                });
             });
 
             document.querySelector('.hero-content').classList.add('fade-in');
