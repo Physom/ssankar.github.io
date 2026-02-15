@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=JetBrains+Mono:wght@300..500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
     <style>
-        /* ----- original vibrant palette (blue, purple, cyan, pink) ----- */
+        /* ----- vibrant palette (blue, purple, cyan, pink) ----- */
         * {
             margin: 0;
             padding: 0;
@@ -54,12 +54,13 @@
             position: relative;
         }
 
-        /* ----- background with many lattices (bravais + kagome, lieb, pyrochlore, altermagnet) ----- */
+        /* ----- BACKGROUND: GRID + FLOATING SHAPES (like first code) + RANDOM DRIFTING LATTICES ----- */
         .background-effects {
             position: fixed;
             inset: 0;
             z-index: -1;
             overflow: hidden;
+            pointer-events: none;
         }
 
         .animated-grid {
@@ -75,146 +76,10 @@
 
         @keyframes gridMove {
             0% { transform: translate(0,0); }
-            100% { transform: translate(25px,25px); }
+            100% { transform: translate(30px,30px); }
         }
 
-        .floating-lattices {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .lattice-icon {
-            position: absolute;
-            width: 140px;
-            height: 140px;
-            opacity: 0.1;
-            background: transparent;
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            animation: rotateLattice 40s linear infinite;
-            filter: drop-shadow(0 0 15px currentColor);
-        }
-
-        /* simple cubic */
-        .lattice-icon.sc {
-            top: 10%;
-            left: 5%;
-            background-image: 
-                linear-gradient(90deg, var(--accent-blue) 1px, transparent 1px),
-                linear-gradient(0deg, var(--accent-blue) 1px, transparent 1px);
-            background-size: 20px 20px;
-            color: var(--accent-blue);
-        }
-
-        /* body-centered cubic */
-        .lattice-icon.bcc {
-            top: 70%;
-            right: 10%;
-            background-image: 
-                radial-gradient(circle at 30% 30%, var(--accent-purple) 3px, transparent 3px),
-                radial-gradient(circle at 70% 70%, var(--accent-purple) 3px, transparent 3px),
-                radial-gradient(circle at 50% 50%, var(--accent-purple) 3px, transparent 3px),
-                linear-gradient(90deg, var(--accent-purple) 1px, transparent 1px),
-                linear-gradient(0deg, var(--accent-purple) 1px, transparent 1px);
-            background-size: 40px 40px, 40px 40px, 40px 40px, 20px 20px, 20px 20px;
-            color: var(--accent-purple);
-        }
-
-        /* face-centered cubic */
-        .lattice-icon.fcc {
-            bottom: 15%;
-            left: 20%;
-            background-image: 
-                radial-gradient(circle at 25% 25%, var(--accent-cyan) 2px, transparent 2px),
-                radial-gradient(circle at 75% 25%, var(--accent-cyan) 2px, transparent 2px),
-                radial-gradient(circle at 25% 75%, var(--accent-cyan) 2px, transparent 2px),
-                radial-gradient(circle at 75% 75%, var(--accent-cyan) 2px, transparent 2px),
-                linear-gradient(90deg, var(--accent-cyan) 1px, transparent 1px),
-                linear-gradient(0deg, var(--accent-cyan) 1px, transparent 1px);
-            background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px, 20px 20px, 20px 20px;
-            color: var(--accent-cyan);
-        }
-
-        /* lieb lattice: square with extra sites at edge centers */
-        .lattice-icon.lieb {
-            top: 30%;
-            right: 20%;
-            background-image: 
-                radial-gradient(circle at 50% 50%, var(--accent-pink) 3px, transparent 3px),
-                radial-gradient(circle at 20% 20%, var(--accent-pink) 2px, transparent 2px),
-                radial-gradient(circle at 80% 20%, var(--accent-pink) 2px, transparent 2px),
-                radial-gradient(circle at 20% 80%, var(--accent-pink) 2px, transparent 2px),
-                radial-gradient(circle at 80% 80%, var(--accent-pink) 2px, transparent 2px),
-                linear-gradient(90deg, var(--accent-pink) 1px, transparent 1px),
-                linear-gradient(0deg, var(--accent-pink) 1px, transparent 1px);
-            background-size: 60px 60px, 60px 60px, 60px 60px, 60px 60px, 60px 60px, 30px 30px, 30px 30px;
-            background-position: 30px 30px, 0 0, 60px 0, 0 60px, 60px 60px, 0 0, 0 0;
-        }
-
-        /* kagome: hexagon of circles */
-        .lattice-icon.kagome {
-            top: 60%;
-            left: 15%;
-            background: 
-                radial-gradient(circle at 50% 0%, var(--accent-blue) 3px, transparent 3px),
-                radial-gradient(circle at 75% 25%, var(--accent-blue) 3px, transparent 3px),
-                radial-gradient(circle at 75% 75%, var(--accent-blue) 3px, transparent 3px),
-                radial-gradient(circle at 50% 100%, var(--accent-blue) 3px, transparent 3px),
-                radial-gradient(circle at 25% 75%, var(--accent-blue) 3px, transparent 3px),
-                radial-gradient(circle at 25% 25%, var(--accent-blue) 3px, transparent 3px);
-            background-size: 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px;
-            background-repeat: no-repeat;
-            background-position: 40px 0, 70px 20px, 70px 60px, 40px 80px, 10px 60px, 10px 20px;
-        }
-
-        /* pyrochlore: tetrahedral pattern (simplified as four dots in a tetrahedron) */
-        .lattice-icon.pyrochlore {
-            bottom: 30%;
-            right: 25%;
-            background: 
-                radial-gradient(circle at 30% 30%, var(--accent-purple) 3px, transparent 3px),
-                radial-gradient(circle at 70% 30%, var(--accent-purple) 3px, transparent 3px),
-                radial-gradient(circle at 30% 70%, var(--accent-purple) 3px, transparent 3px),
-                radial-gradient(circle at 70% 70%, var(--accent-purple) 3px, transparent 3px),
-                radial-gradient(circle at 50% 20%, var(--accent-purple) 3px, transparent 3px); /* top */
-            background-size: 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px;
-            background-repeat: no-repeat;
-            background-position: 10px 10px, 50px 10px, 10px 50px, 50px 50px, 30px -10px;
-        }
-
-        /* altermagnet: alternating spins (↑↓) */
-        .lattice-icon.altermagnet {
-            top: 20%;
-            right: 35%;
-            font-family: 'Inter', sans-serif;
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--accent-pink);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 10px;
-            background: transparent;
-            border: none;
-            animation: none;
-            opacity: 0.15;
-        }
-        .lattice-icon.altermagnet span {
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-shadow: 0 0 10px currentColor;
-        }
-
-        @keyframes rotateLattice {
-            0% { transform: rotate(0deg) scale(1); }
-            100% { transform: rotate(360deg) scale(1.1); }
-        }
-
-        /* also floating shapes */
+        /* floating shapes (exactly like first code) */
         .floating-shapes {
             position: absolute;
             width: 100%;
@@ -239,6 +104,241 @@
             100% { transform: translate(30px, -30px) scale(1.05); }
         }
 
+        /* LATTICES – now with random, moderate, non-rotating drift (like first code's organic movement) */
+        .floating-lattices {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .lattice-icon {
+            position: absolute;
+            opacity: 0.08; /* subtle */
+            background: transparent;
+            filter: drop-shadow(0 0 15px currentColor);
+            animation-duration: 24s, 18s; /* two different animations for randomness */
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        /* each lattice gets a unique combination of drift animations */
+        .lattice-icon.sc {
+            width: 280px;
+            height: 280px;
+            top: 5%;
+            left: 2%;
+            background-image: 
+                linear-gradient(90deg, var(--accent-blue) 1px, transparent 1px),
+                linear-gradient(0deg, var(--accent-blue) 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--accent-blue);
+            animation-name: driftSlow, driftTilt;
+        }
+
+        .lattice-icon.bcc {
+            width: 320px;
+            height: 320px;
+            bottom: 0%;
+            right: 0%;
+            background-image: 
+                radial-gradient(circle at 30% 30%, var(--accent-purple) 5px, transparent 5px),
+                radial-gradient(circle at 70% 70%, var(--accent-purple) 5px, transparent 5px),
+                radial-gradient(circle at 50% 50%, var(--accent-purple) 6px, transparent 6px),
+                linear-gradient(90deg, var(--accent-purple) 1px, transparent 1px),
+                linear-gradient(0deg, var(--accent-purple) 1px, transparent 1px);
+            background-size: 70px 70px, 70px 70px, 70px 70px, 40px 40px, 40px 40px;
+            color: var(--accent-purple);
+            animation-name: driftLazy, driftSide;
+        }
+
+        .lattice-icon.fcc {
+            width: 300px;
+            height: 300px;
+            top: 20%;
+            left: 20%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, var(--accent-cyan) 5px, transparent 5px),
+                radial-gradient(circle at 75% 25%, var(--accent-cyan) 5px, transparent 5px),
+                radial-gradient(circle at 25% 75%, var(--accent-cyan) 5px, transparent 5px),
+                radial-gradient(circle at 75% 75%, var(--accent-cyan) 5px, transparent 5px),
+                linear-gradient(90deg, var(--accent-cyan) 1px, transparent 1px),
+                linear-gradient(0deg, var(--accent-cyan) 1px, transparent 1px);
+            background-size: 70px 70px, 70px 70px, 70px 70px, 70px 70px, 40px 40px, 40px 40px;
+            color: var(--accent-cyan);
+            animation-name: driftWavy, driftUpDown;
+        }
+
+        .lattice-icon.lieb {
+            width: 380px;
+            height: 380px;
+            bottom: 10%;
+            left: 30%;
+            background-image: 
+                radial-gradient(circle at 50% 50%, var(--accent-pink) 6px, transparent 6px),
+                radial-gradient(circle at 20% 20%, var(--accent-pink) 4px, transparent 4px),
+                radial-gradient(circle at 80% 20%, var(--accent-pink) 4px, transparent 4px),
+                radial-gradient(circle at 20% 80%, var(--accent-pink) 4px, transparent 4px),
+                radial-gradient(circle at 80% 80%, var(--accent-pink) 4px, transparent 4px),
+                linear-gradient(90deg, var(--accent-pink) 1px, transparent 1px),
+                linear-gradient(0deg, var(--accent-pink) 1px, transparent 1px);
+            background-size: 120px 120px, 120px 120px, 120px 120px, 120px 120px, 120px 120px, 60px 60px, 60px 60px;
+            background-position: 60px 60px, 0 0, 120px 0, 0 120px, 120px 120px, 0 0, 0 0;
+            color: var(--accent-pink);
+            animation-name: driftLarge, driftDiagonal;
+        }
+
+        .lattice-icon.kagome {
+            width: 340px;
+            height: 340px;
+            top: 60%;
+            right: 15%;
+            background: 
+                radial-gradient(circle at 50% 0%, var(--accent-blue) 7px, transparent 7px),
+                radial-gradient(circle at 75% 25%, var(--accent-blue) 7px, transparent 7px),
+                radial-gradient(circle at 75% 75%, var(--accent-blue) 7px, transparent 7px),
+                radial-gradient(circle at 50% 100%, var(--accent-blue) 7px, transparent 7px),
+                radial-gradient(circle at 25% 75%, var(--accent-blue) 7px, transparent 7px),
+                radial-gradient(circle at 25% 25%, var(--accent-blue) 7px, transparent 7px);
+            background-size: 160px 160px, 160px 160px, 160px 160px, 160px 160px, 160px 160px, 160px 160px;
+            background-repeat: no-repeat;
+            background-position: 80px 0, 140px 35px, 140px 125px, 80px 160px, 20px 125px, 20px 35px;
+            color: var(--accent-blue);
+            animation-name: driftBounce, driftSpinless;
+        }
+
+        .lattice-icon.pyrochlore {
+            width: 300px;
+            height: 300px;
+            top: 15%;
+            right: 30%;
+            background: 
+                radial-gradient(circle at 30% 30%, var(--accent-purple) 6px, transparent 6px),
+                radial-gradient(circle at 70% 30%, var(--accent-purple) 6px, transparent 6px),
+                radial-gradient(circle at 30% 70%, var(--accent-purple) 6px, transparent 6px),
+                radial-gradient(circle at 70% 70%, var(--accent-purple) 6px, transparent 6px),
+                radial-gradient(circle at 50% 10%, var(--accent-purple) 6px, transparent 6px);
+            background-size: 150px 150px, 150px 150px, 150px 150px, 150px 150px, 150px 150px;
+            background-repeat: no-repeat;
+            background-position: 20px 20px, 110px 20px, 20px 110px, 110px 110px, 65px -20px;
+            color: var(--accent-purple);
+            animation-name: driftGlide, driftSlight;
+        }
+
+        .lattice-icon.altermagnet {
+            width: 250px;
+            height: 250px;
+            bottom: 25%;
+            left: 10%;
+            font-family: 'Inter', sans-serif;
+            font-size: 45px;
+            font-weight: bold;
+            color: var(--accent-pink);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            background: transparent;
+            opacity: 0.1;
+            animation-name: driftPulse, driftSlide;
+        }
+        .lattice-icon.altermagnet span {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 0 20px currentColor;
+        }
+
+        .lattice-icon.honeycomb {
+            width: 300px;
+            height: 300px;
+            top: 40%;
+            left: 45%;
+            background: repeating-linear-gradient(60deg, transparent, transparent 18px, var(--accent-cyan) 18px, var(--accent-cyan) 20px),
+                        repeating-linear-gradient(120deg, transparent, transparent 18px, var(--accent-cyan) 18px, var(--accent-cyan) 20px);
+            opacity: 0.08;
+            animation-name: driftZigZag, driftSlow;
+        }
+
+        .lattice-icon.triangular {
+            width: 320px;
+            height: 320px;
+            bottom: 5%;
+            right: 35%;
+            background: repeating-linear-gradient(30deg, transparent, transparent 20px, var(--accent-purple) 20px, var(--accent-purple) 22px),
+                        repeating-linear-gradient(90deg, transparent, transparent 20px, var(--accent-purple) 20px, var(--accent-purple) 22px);
+            opacity: 0.08;
+            animation-name: driftDiagonal, driftWavy;
+        }
+
+        /* ----- RANDOM DRIFT KEYFRAMES (moderate, non-rotating) ----- */
+        @keyframes driftSlow {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(20px, -15px); }
+        }
+        @keyframes driftTilt {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(-10px, 25px); }
+        }
+        @keyframes driftLazy {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(25px, 10px); }
+        }
+        @keyframes driftSide {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(-20px, -5px); }
+        }
+        @keyframes driftWavy {
+            0% { transform: translate(0,0); }
+            50% { transform: translate(15px, -10px); }
+            100% { transform: translate(-10px, 20px); }
+        }
+        @keyframes driftUpDown {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(5px, 30px); }
+        }
+        @keyframes driftLarge {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(30px, -20px); }
+        }
+        @keyframes driftDiagonal {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(20px, 20px); }
+        }
+        @keyframes driftBounce {
+            0% { transform: translate(0,0); }
+            50% { transform: translate(-15px, 10px); }
+            100% { transform: translate(15px, -10px); }
+        }
+        @keyframes driftSpinless {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(-25px, 5px); }
+        }
+        @keyframes driftGlide {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(10px, -25px); }
+        }
+        @keyframes driftSlight {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(-5px, 10px); }
+        }
+        @keyframes driftPulse {
+            0% { transform: scale(1) translate(0,0); }
+            100% { transform: scale(1.05) translate(10px, -10px); }
+        }
+        @keyframes driftSlide {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(-15px, 15px); }
+        }
+        @keyframes driftZigZag {
+            0% { transform: translate(0,0); }
+            33% { transform: translate(20px, 5px); }
+            66% { transform: translate(-10px, 20px); }
+            100% { transform: translate(5px, -10px); }
+        }
+
         #particles-canvas {
             position: fixed;
             inset: 0;
@@ -246,7 +346,7 @@
             pointer-events: none;
         }
 
-        /* ----- container & sections ----- */
+        /* ----- container & sections (unchanged from last clean version) ----- */
         .container {
             width: 90%;
             max-width: 1200px;
@@ -284,7 +384,6 @@
             box-shadow: var(--glow-blue);
         }
 
-        /* ----- header (glass) ----- */
         header {
             position: fixed;
             top: 0;
@@ -309,7 +408,7 @@
             align-items: center;
         }
 
-        /* ----- BIG KAGOME + ALTERMAGNET LOGO (100px) ----- */
+        /* ----- BIG KAGOME + ALTERMAGNET LOGO (unchanged) ----- */
         .logo {
             display: flex;
             align-items: center;
@@ -339,7 +438,6 @@
             transform: scale(1.1) rotate(5deg);
         }
 
-        /* kagome lattice: hexagon of atoms */
         .kagome-atom {
             position: absolute;
             width: 18px;
@@ -348,14 +446,12 @@
             box-shadow: 0 0 20px currentColor;
         }
 
-        /* six atoms in a hexagon */
-        .kagome-atom:nth-child(1) { background: #58a6ff; top: 15px; left: 40px; } /* top */
-        .kagome-atom:nth-child(2) { background: #bc8cff; top: 30px; right: 25px; } /* top-right */
-        .kagome-atom:nth-child(3) { background: #39c5cf; bottom: 30px; right: 25px; } /* bottom-right */
-        .kagome-atom:nth-child(4) { background: #ff7b72; bottom: 15px; left: 40px; } /* bottom */
-        .kagome-atom:nth-child(5) { background: #bc8cff; bottom: 30px; left: 10px; } /* bottom-left */
-        .kagome-atom:nth-child(6) { background: #58a6ff; top: 30px; left: 10px; } /* top-left */
-        /* center atom (altermagnet core) */
+        .kagome-atom:nth-child(1) { background: #58a6ff; top: 15px; left: 40px; }
+        .kagome-atom:nth-child(2) { background: #bc8cff; top: 30px; right: 25px; }
+        .kagome-atom:nth-child(3) { background: #39c5cf; bottom: 30px; right: 25px; }
+        .kagome-atom:nth-child(4) { background: #ff7b72; bottom: 15px; left: 40px; }
+        .kagome-atom:nth-child(5) { background: #bc8cff; bottom: 30px; left: 10px; }
+        .kagome-atom:nth-child(6) { background: #58a6ff; top: 30px; left: 10px; }
         .kagome-atom:nth-child(7) {
             background: white;
             width: 24px;
@@ -378,7 +474,6 @@
             font-weight: 800;
         }
 
-        /* connecting lines (kagome bonds) */
         .kagome-line {
             position: absolute;
             background: rgba(255,255,255,0.3);
@@ -388,7 +483,6 @@
             transform-origin: 0 0;
         }
 
-        /* line from top to top-right */
         .line1 { top: 24px; left: 50px; transform: rotate(30deg); width: 38px; }
         .line2 { top: 24px; left: 20px; transform: rotate(-30deg); width: 38px; }
         .line3 { top: 50px; left: 12px; transform: rotate(90deg); width: 45px; }
@@ -396,24 +490,16 @@
         .line5 { bottom: 24px; left: 50px; transform: rotate(-30deg); width: 38px; }
         .line6 { top: 50px; left: 60px; transform: rotate(90deg); width: 45px; }
 
-        /* additional altermagnet arrows (tiny) */
-        .spin-up {
+        .spin-up, .spin-down {
             position: absolute;
-            color: #ff7b72;
             font-size: 16px;
             font-weight: bold;
             text-shadow: 0 0 10px currentColor;
         }
+        .spin-up { color: #ff7b72; }
+        .spin-down { color: #58a6ff; }
         .spin-up:nth-of-type(1) { top: 5px; left: 15px; transform: rotate(-20deg); }
         .spin-up:nth-of-type(2) { bottom: 5px; right: 15px; transform: rotate(160deg); }
-
-        .spin-down {
-            position: absolute;
-            color: #58a6ff;
-            font-size: 16px;
-            font-weight: bold;
-            text-shadow: 0 0 10px currentColor;
-        }
         .spin-down:nth-of-type(1) { top: 5px; right: 15px; transform: rotate(200deg); }
         .spin-down:nth-of-type(2) { bottom: 5px; left: 15px; transform: rotate(20deg); }
 
@@ -461,7 +547,7 @@
             cursor: pointer;
         }
 
-        /* ----- hero (unchanged) ----- */
+        /* ----- HERO (clean, no highlights, no extra line) ----- */
         .hero {
             padding-top: 180px;
             min-height: 100vh;
@@ -491,37 +577,24 @@
             font-family: 'Playfair Display', serif;
             font-size: 5rem;
             line-height: 1;
-            background: linear-gradient(135deg, #f0f6fc, #58a6ff, #bc8cff, #39c5cf);
+            background: linear-gradient(135deg, #f0f6fc, #58a6ff, #bc8cff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 20px;
-            animation: glowShift 4s infinite alternate;
-        }
-
-        @keyframes glowShift {
-            0% { filter: drop-shadow(0 0 5px #58a6ff); }
-            100% { filter: drop-shadow(0 0 20px #bc8cff); }
+            margin-bottom: 15px;
         }
 
         .hero-text h2 {
-            font-size: 2.4rem;
-            color: var(--accent-cyan);
-            font-weight: 600;
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px #39c5cf;
-        }
-
-        .hero-text p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            max-width: 750px;
-            margin-bottom: 40px;
+            font-size: 2.2rem;
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 0;
         }
 
         .cta-buttons {
             display: flex;
             gap: 25px;
+            margin-top: 40px;
         }
 
         .btn {
@@ -580,7 +653,7 @@
             border-color: var(--accent-blue);
         }
 
-        /* ----- about (original) ----- */
+        /* ----- all other sections (unchanged, original content) ----- */
         .about-content {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -641,7 +714,6 @@
             letter-spacing: 1px;
         }
 
-        /* ----- publications (original, no hyperlinks) ----- */
         .publication-item {
             background: var(--card-bg);
             padding: 35px;
@@ -692,7 +764,6 @@
             font-weight: 800;
         }
 
-        /* ----- expertise (original full lists) ----- */
         .expertise-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -763,7 +834,6 @@
             font-size: 1.2rem;
         }
 
-        /* ----- teaching & awards (original) ----- */
         .teaching-grid, .awards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -806,7 +876,6 @@
             line-height: 1.6;
         }
 
-        /* ----- contact (original) ----- */
         .contact-container {
             display: grid;
             grid-template-columns: 1fr;
@@ -858,7 +927,6 @@
             box-shadow: var(--glow-blue);
         }
 
-        /* ----- footer (no socials) ----- */
         footer {
             background: var(--secondary);
             padding: 80px 0 30px;
@@ -891,7 +959,6 @@
             font-size: 0.9rem;
         }
 
-        /* back to top */
         .back-to-top {
             position: fixed;
             bottom: 40px;
@@ -942,10 +1009,12 @@
             .nav-links.active { left: 0; }
             .mobile-menu-btn { display: block; }
             .hero-text h1 { font-size: 3rem; }
+            .hero-text h2 { font-size: 1.8rem; }
         }
 
         @media (max-width: 600px) {
             .hero-text h1 { font-size: 2.5rem; }
+            .hero-text h2 { font-size: 1.5rem; }
             .cta-buttons { flex-direction: column; }
             .kagome-logo { width: 80px; height: 80px; }
         }
@@ -964,6 +1033,8 @@
             <div class="lattice-icon altermagnet">
                 <span>↑</span><span>↓</span><span>↑</span><span>↓</span>
             </div>
+            <div class="lattice-icon honeycomb"></div>
+            <div class="lattice-icon triangular"></div>
         </div>
         <div class="floating-shapes">
             <div class="floating-shape"></div>
@@ -975,7 +1046,6 @@
 
     <header id="header">
         <div class="container header-container">
-            <!-- Big kagome + altermagnet logo -->
             <a href="#" class="logo">
                 <div class="kagome-logo">
                     <div class="kagome-atom"></div>
@@ -1018,7 +1088,6 @@
                 <div class="hero-text">
                     <h1>Soumya Sankar</h1>
                     <h2>experimental quantum materials physicist</h2>
-                    <p>ph.d. candidate @ HKUST · epitaxial thin films · kagome lattices · altermagnets · quantum transport</p>
                     <div class="cta-buttons">
                         <a href="#publications" class="btn btn-primary"><i class="fas fa-file-alt"></i> publications</a>
                         <a href="#contact" class="btn btn-secondary"><i class="fas fa-paper-plane"></i> connect</a>
@@ -1067,7 +1136,6 @@
         <div class="container">
             <h2 class="section-title">Publications</h2>
             <div class="publications-container">
-                <!-- Paper 6 -->
                 <div class="publication-item">
                     <div class="publication-header">
                         <h3 class="publication-title">Nematic Order and Orbital Selective Mott State in a Partially Filled Kagome Flat Band</h3>
@@ -1075,7 +1143,6 @@
                     </div>
                     <div class="publication-authors">C. Chen, J. Zheng, Y. He, S. Wu, X. Ying, <strong>S. Sankar</strong>, L. Li, Y. Wei, X. Dai, H. C. Po, B. Jäck</div>
                 </div>
-                <!-- Paper 5 -->
                 <div class="publication-item">
                     <div class="publication-header">
                         <h3 class="publication-title">Broadband nonlinear Hall response and multiple wave mixing in a room temperature altermagnet</h3>
@@ -1083,7 +1150,6 @@
                     </div>
                     <div class="publication-authors"><strong>S. Sankar</strong>, X. Cheng, X. Chen, X. Fu, T. Urata, W. Hattori, W. Lu, Z. Lin, D. Chen, C. Felser, H. Ikuta, J. Ma, J. Liu, B. Jäck</div>
                 </div>
-                <!-- Paper 4 -->
                 <div class="publication-item">
                     <div class="publication-header">
                         <h3 class="publication-title">Room temperature observation of the anomalous in-plane Hall effect in epitaxial thin films of a Weyl ferromagnet</h3>
@@ -1091,7 +1157,6 @@
                     </div>
                     <div class="publication-authors"><strong>S. Sankar</strong>, X. Cheng, T. Murtaza, C. Chen, Y. Qin, Q. Shao, R. Lortz, J. Liu, X. Wu, B. Jäck</div>
                 </div>
-                <!-- Paper 3 -->
                 <div class="publication-item">
                     <div class="publication-header">
                         <h3 class="publication-title">Experimental Evidence for a Berry Curvature Quadrupole in an Antiferromagnet</h3>
@@ -1099,7 +1164,6 @@
                     </div>
                     <div class="publication-authors"><strong>S. Sankar</strong>, R. Liu, C. P. Zhang, Q. F. Li, C. Chen, X. J. Gao, J. Zheng, Y. H. Lin, K. Qian, R. P. Yu, X. Zhang, Z. Y. Meng, K. T. Law, Q. Shao, B. Jäck</div>
                 </div>
-                <!-- Paper 2 -->
                 <div class="publication-item">
                     <div class="publication-header">
                         <h3 class="publication-title">Visualizing the localized electrons of a kagome flat band</h3>
@@ -1107,7 +1171,6 @@
                     </div>
                     <div class="publication-authors">C. Chen, J. Zheng, R. Yu, <strong>S. Sankar</strong>, K. T. Law, H. C. Po, B. Jäck</div>
                 </div>
-                <!-- Paper 1 -->
                 <div class="publication-item">
                     <div class="publication-header">
                         <h3 class="publication-title">Giant Photoresponsivity of Transfer-Free Grown Fluorographene-MoS2 Heterostructured Ultra-Stable Transistors</h3>
@@ -1205,7 +1268,6 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo"><h3>Novel Quantum Matter</h3><p style="color:var(--text-muted)">Exploring emergent phenomena at the quantum frontier</p></div>
-                <!-- all social links removed as requested -->
             </div>
             <div class="copyright">
                 <p>© 2025 Soumya Sankar · Ph.D. candidate, Department of Physics, HKUST</p>
@@ -1253,7 +1315,6 @@
                 observer.observe(el);
             });
 
-            // particle canvas with original colors
             const canvas = document.getElementById('particles-canvas');
             const ctx = canvas.getContext('2d');
             let w = canvas.width = window.innerWidth;
@@ -1263,15 +1324,15 @@
                 constructor() {
                     this.x = Math.random() * w;
                     this.y = Math.random() * h;
-                    this.size = Math.random() * 2.5 + 0.8;
-                    this.vx = (Math.random() - 0.5) * 0.2;
-                    this.vy = (Math.random() - 0.5) * 0.2;
+                    this.size = Math.random() * 3 + 1;
+                    this.vx = (Math.random() - 0.5) * 0.3;
+                    this.vy = (Math.random() - 0.5) * 0.3;
                     this.color = Math.random() > 0.33 ? '#58a6ff' : (Math.random() > 0.5 ? '#bc8cff' : '#39c5cf');
                     this.alpha = Math.random() * 0.3 + 0.1;
                 }
                 update() {
-                    this.x += this.vx + Math.sin(Date.now()*0.001)*0.03;
-                    this.y += this.vy + Math.cos(Date.now()*0.001)*0.03;
+                    this.x += this.vx + Math.sin(Date.now()*0.001)*0.05;
+                    this.y += this.vy + Math.cos(Date.now()*0.001)*0.05;
                     if(this.x > w) this.x = 0; else if(this.x < 0) this.x = w;
                     if(this.y > h) this.y = 0; else if(this.y < 0) this.y = h;
                 }
@@ -1283,7 +1344,7 @@
                     ctx.fill();
                 }
             }
-            let particles = Array.from({ length: 70 }, () => new Particle());
+            let particles = Array.from({ length: 80 }, () => new Particle());
             function animate() {
                 ctx.clearRect(0,0,w,h);
                 particles.forEach(p => { p.update(); p.draw(); });
