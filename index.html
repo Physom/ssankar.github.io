@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=JetBrains+Mono:wght@300..500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
     <style>
-        /* ----- vibrant palette (blue, purple, cyan, pink) ----- */
+        /* ----- white background with vibrant, visible accents ----- */
         * {
             margin: 0;
             padding: 0;
@@ -17,27 +17,27 @@
         }
 
         :root {
-            --primary: #0d1117;
-            --secondary: #161b22;
-            --tertiary: #21262d;
-            --accent-blue: #58a6ff;
-            --accent-purple: #bc8cff;
-            --accent-cyan: #39c5cf;
-            --accent-pink: #ff7b72;
-            --text-primary: #f0f6fc;
-            --text-secondary: #c9d1d9;
-            --text-muted: #8b949e;
-            --gradient-primary: linear-gradient(135deg, #58a6ff, #bc8cff, #39c5cf, #ff7b72);
-            --gradient-secondary: linear-gradient(135deg, #39c5cf, #58a6ff, #bc8cff);
-            --gradient-dark: linear-gradient(135deg, #0d1117, #161b22);
-            --card-bg: rgba(22, 27, 34, 0.85);
-            --card-border: rgba(88, 166, 255, 0.15);
-            --shadow-soft: 0 10px 30px rgba(88, 166, 255, 0.1);
-            --shadow-glow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(188, 140, 255, 0.2);
-            --glow-blue: 0 0 20px rgba(88, 166, 255, 0.4);
-            --glow-purple: 0 0 20px rgba(188, 140, 255, 0.4);
-            --glow-cyan: 0 0 20px rgba(57, 197, 207, 0.4);
-            --glow-pink: 0 0 20px rgba(255, 123, 114, 0.4);
+            --primary: #ffffff;
+            --secondary: #f8fafc;
+            --tertiary: #f1f5f9;
+            --accent-blue: #1e4b8a;        /* darker blue for visibility on white */
+            --accent-purple: #6b21a5;        /* darker purple */
+            --accent-cyan: #0e7490;           /* darker cyan */
+            --accent-pink: #b91c6b;            /* darker pink */
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --gradient-primary: linear-gradient(135deg, #1e4b8a, #6b21a5, #0e7490, #b91c6b);
+            --gradient-secondary: linear-gradient(135deg, #0e7490, #1e4b8a, #6b21a5);
+            --gradient-dark: linear-gradient(135deg, #ffffff, #f1f5f9);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(30, 75, 138, 0.25);
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-glow: 0 15px 35px rgba(30, 75, 138, 0.2), 0 0 0 1px rgba(107, 33, 165, 0.15);
+            --glow-blue: 0 0 20px rgba(30, 75, 138, 0.25);
+            --glow-purple: 0 0 20px rgba(107, 33, 165, 0.25);
+            --glow-cyan: 0 0 20px rgba(14, 116, 144, 0.25);
+            --glow-pink: 0 0 20px rgba(185, 28, 107, 0.25);
         }
 
         html {
@@ -54,7 +54,7 @@
             position: relative;
         }
 
-        /* ----- BACKGROUND: GRID + FLOATING SHAPES (like first code) + RANDOM DRIFTING LATTICES ----- */
+        /* ----- ANIME-STYLE BACKGROUND: fast, connected, energetic ----- */
         .background-effects {
             position: fixed;
             inset: 0;
@@ -68,10 +68,10 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(88, 166, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(188, 140, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(30, 75, 138, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(107, 33, 165, 0.08) 1px, transparent 1px);
             background-size: 50px 50px;
-            animation: gridMove 40s linear infinite;
+            animation: gridMove 30s linear infinite; /* faster grid */
         }
 
         @keyframes gridMove {
@@ -79,7 +79,6 @@
             100% { transform: translate(30px,30px); }
         }
 
-        /* floating shapes (exactly like first code) */
         .floating-shapes {
             position: absolute;
             width: 100%;
@@ -90,21 +89,21 @@
             position: absolute;
             border-radius: 50%;
             background: var(--gradient-primary);
-            opacity: 0.03;
+            opacity: 0.08;   /* slightly more visible */
             filter: blur(60px);
-            animation: levitate 20s infinite alternate ease-in-out;
+            animation: levitate 12s infinite alternate ease-in-out; /* faster */
         }
 
         .floating-shape:nth-child(1) { width: 400px; height: 400px; top: 10%; left: 5%; }
-        .floating-shape:nth-child(2) { width: 300px; height: 300px; top: 60%; right: 10%; background: var(--gradient-secondary); animation-delay: -5s; }
-        .floating-shape:nth-child(3) { width: 250px; height: 250px; bottom: 20%; left: 15%; animation-delay: -10s; }
+        .floating-shape:nth-child(2) { width: 300px; height: 300px; top: 60%; right: 10%; background: var(--gradient-secondary); animation-delay: -3s; }
+        .floating-shape:nth-child(3) { width: 250px; height: 250px; bottom: 20%; left: 15%; animation-delay: -6s; }
 
         @keyframes levitate {
             0% { transform: translate(0,0) scale(1); }
-            100% { transform: translate(30px, -30px) scale(1.05); }
+            100% { transform: translate(40px, -40px) scale(1.1); }
         }
 
-        /* LATTICES – now with random, moderate, non-rotating drift (like first code's organic movement) */
+        /* LATTICES – now with fast, dynamic, and connected feel (using multiple animations) */
         .floating-lattices {
             position: absolute;
             width: 100%;
@@ -113,16 +112,17 @@
 
         .lattice-icon {
             position: absolute;
-            opacity: 0.08; /* subtle */
+            opacity: 0.2;
             background: transparent;
             filter: drop-shadow(0 0 15px currentColor);
-            animation-duration: 24s, 18s; /* two different animations for randomness */
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite;
-            animation-direction: alternate;
+            animation-duration: 8s, 10s, 6s; /* multiple faster animations */
+            animation-timing-function: ease-in-out, ease-in-out, linear;
+            animation-iteration-count: infinite, infinite, infinite;
+            animation-direction: alternate, alternate, normal;
+            color: var(--accent-blue);
         }
 
-        /* each lattice gets a unique combination of drift animations */
+        /* each lattice gets unique combos for variety */
         .lattice-icon.sc {
             width: 280px;
             height: 280px;
@@ -133,7 +133,7 @@
                 linear-gradient(0deg, var(--accent-blue) 1px, transparent 1px);
             background-size: 40px 40px;
             color: var(--accent-blue);
-            animation-name: driftSlow, driftTilt;
+            animation-name: fastDrift1, fastTilt, spinSlow;
         }
 
         .lattice-icon.bcc {
@@ -149,7 +149,7 @@
                 linear-gradient(0deg, var(--accent-purple) 1px, transparent 1px);
             background-size: 70px 70px, 70px 70px, 70px 70px, 40px 40px, 40px 40px;
             color: var(--accent-purple);
-            animation-name: driftLazy, driftSide;
+            animation-name: fastDrift2, fastBounce, spinMedium;
         }
 
         .lattice-icon.fcc {
@@ -166,7 +166,7 @@
                 linear-gradient(0deg, var(--accent-cyan) 1px, transparent 1px);
             background-size: 70px 70px, 70px 70px, 70px 70px, 70px 70px, 40px 40px, 40px 40px;
             color: var(--accent-cyan);
-            animation-name: driftWavy, driftUpDown;
+            animation-name: fastDrift3, fastWobble, spinFast;
         }
 
         .lattice-icon.lieb {
@@ -185,7 +185,7 @@
             background-size: 120px 120px, 120px 120px, 120px 120px, 120px 120px, 120px 120px, 60px 60px, 60px 60px;
             background-position: 60px 60px, 0 0, 120px 0, 0 120px, 120px 120px, 0 0, 0 0;
             color: var(--accent-pink);
-            animation-name: driftLarge, driftDiagonal;
+            animation-name: fastDrift4, fastSwing, spinMedium;
         }
 
         .lattice-icon.kagome {
@@ -204,7 +204,7 @@
             background-repeat: no-repeat;
             background-position: 80px 0, 140px 35px, 140px 125px, 80px 160px, 20px 125px, 20px 35px;
             color: var(--accent-blue);
-            animation-name: driftBounce, driftSpinless;
+            animation-name: fastDrift5, fastSkew, spinSlow;
         }
 
         .lattice-icon.pyrochlore {
@@ -222,7 +222,7 @@
             background-repeat: no-repeat;
             background-position: 20px 20px, 110px 20px, 20px 110px, 110px 110px, 65px -20px;
             color: var(--accent-purple);
-            animation-name: driftGlide, driftSlight;
+            animation-name: fastDrift6, fastWarp, spinFast;
         }
 
         .lattice-icon.altermagnet {
@@ -239,8 +239,8 @@
             gap: 20px;
             padding: 20px;
             background: transparent;
-            opacity: 0.1;
-            animation-name: driftPulse, driftSlide;
+            opacity: 0.2;
+            animation-name: fastDrift7, fastPulse, spinMedium;
         }
         .lattice-icon.altermagnet span {
             width: 70px;
@@ -258,8 +258,9 @@
             left: 45%;
             background: repeating-linear-gradient(60deg, transparent, transparent 18px, var(--accent-cyan) 18px, var(--accent-cyan) 20px),
                         repeating-linear-gradient(120deg, transparent, transparent 18px, var(--accent-cyan) 18px, var(--accent-cyan) 20px);
-            opacity: 0.08;
-            animation-name: driftZigZag, driftSlow;
+            opacity: 0.2;
+            animation-name: fastDrift8, fastZigZag, spinSlow;
+            color: var(--accent-cyan);
         }
 
         .lattice-icon.triangular {
@@ -269,75 +270,35 @@
             right: 35%;
             background: repeating-linear-gradient(30deg, transparent, transparent 20px, var(--accent-purple) 20px, var(--accent-purple) 22px),
                         repeating-linear-gradient(90deg, transparent, transparent 20px, var(--accent-purple) 20px, var(--accent-purple) 22px);
-            opacity: 0.08;
-            animation-name: driftDiagonal, driftWavy;
+            opacity: 0.2;
+            animation-name: fastDrift9, fastDiagonal, spinFast;
+            color: var(--accent-purple);
         }
 
-        /* ----- RANDOM DRIFT KEYFRAMES (moderate, non-rotating) ----- */
-        @keyframes driftSlow {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(20px, -15px); }
-        }
-        @keyframes driftTilt {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(-10px, 25px); }
-        }
-        @keyframes driftLazy {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(25px, 10px); }
-        }
-        @keyframes driftSide {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(-20px, -5px); }
-        }
-        @keyframes driftWavy {
-            0% { transform: translate(0,0); }
-            50% { transform: translate(15px, -10px); }
-            100% { transform: translate(-10px, 20px); }
-        }
-        @keyframes driftUpDown {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(5px, 30px); }
-        }
-        @keyframes driftLarge {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(30px, -20px); }
-        }
-        @keyframes driftDiagonal {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(20px, 20px); }
-        }
-        @keyframes driftBounce {
-            0% { transform: translate(0,0); }
-            50% { transform: translate(-15px, 10px); }
-            100% { transform: translate(15px, -10px); }
-        }
-        @keyframes driftSpinless {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(-25px, 5px); }
-        }
-        @keyframes driftGlide {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(10px, -25px); }
-        }
-        @keyframes driftSlight {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(-5px, 10px); }
-        }
-        @keyframes driftPulse {
-            0% { transform: scale(1) translate(0,0); }
-            100% { transform: scale(1.05) translate(10px, -10px); }
-        }
-        @keyframes driftSlide {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(-15px, 15px); }
-        }
-        @keyframes driftZigZag {
-            0% { transform: translate(0,0); }
-            33% { transform: translate(20px, 5px); }
-            66% { transform: translate(-10px, 20px); }
-            100% { transform: translate(5px, -10px); }
-        }
+        /* Fast and dynamic keyframes */
+        @keyframes fastDrift1 { 0% { transform: translate(0,0); } 100% { transform: translate(30px, -20px); } }
+        @keyframes fastDrift2 { 0% { transform: translate(0,0); } 100% { transform: translate(-25px, 30px); } }
+        @keyframes fastDrift3 { 0% { transform: translate(0,0); } 100% { transform: translate(20px, 20px); } }
+        @keyframes fastDrift4 { 0% { transform: translate(0,0); } 100% { transform: translate(-30px, -15px); } }
+        @keyframes fastDrift5 { 0% { transform: translate(0,0); } 100% { transform: translate(25px, -25px); } }
+        @keyframes fastDrift6 { 0% { transform: translate(0,0); } 100% { transform: translate(-20px, 25px); } }
+        @keyframes fastDrift7 { 0% { transform: translate(0,0); } 100% { transform: translate(15px, -20px); } }
+        @keyframes fastDrift8 { 0% { transform: translate(0,0); } 100% { transform: translate(-15px, 30px); } }
+        @keyframes fastDrift9 { 0% { transform: translate(0,0); } 100% { transform: translate(30px, 15px); } }
+
+        @keyframes fastTilt { 0% { transform: rotate(-5deg) scale(1); } 100% { transform: rotate(10deg) scale(1.05); } }
+        @keyframes fastBounce { 0% { transform: translateY(0); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0); } }
+        @keyframes fastWobble { 0% { transform: rotate(0deg); } 25% { transform: rotate(5deg); } 75% { transform: rotate(-5deg); } 100% { transform: rotate(0deg); } }
+        @keyframes fastSwing { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(8deg) scale(1.1); } 100% { transform: rotate(-8deg) scale(1); } }
+        @keyframes fastSkew { 0% { transform: skew(0deg, 0deg); } 100% { transform: skew(5deg, -5deg); } }
+        @keyframes fastWarp { 0% { transform: scale(1) rotate(0deg); } 100% { transform: scale(1.1) rotate(10deg); } }
+        @keyframes fastPulse { 0% { opacity: 0.2; } 50% { opacity: 0.3; } 100% { opacity: 0.2; } }
+        @keyframes fastZigZag { 0% { transform: translateX(0); } 33% { transform: translateX(20px); } 66% { transform: translateX(-20px); } 100% { transform: translateX(0); } }
+        @keyframes fastDiagonal { 0% { transform: translate(0,0); } 50% { transform: translate(20px, -20px); } 100% { transform: translate(-20px, 20px); } }
+
+        @keyframes spinSlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(20deg); } }
+        @keyframes spinMedium { 0% { transform: rotate(0deg); } 100% { transform: rotate(40deg); } }
+        @keyframes spinFast { 0% { transform: rotate(0deg); } 100% { transform: rotate(60deg); } }
 
         #particles-canvas {
             position: fixed;
@@ -346,7 +307,7 @@
             pointer-events: none;
         }
 
-        /* ----- container & sections (unchanged from last clean version) ----- */
+        /* ----- rest of the styles (unchanged from previous white version) ----- */
         .container {
             width: 90%;
             max-width: 1200px;
@@ -390,16 +351,16 @@
             width: 100%;
             z-index: 1000;
             padding: 25px 0;
-            background: rgba(13, 17, 23, 0.9);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(88, 166, 255, 0.1);
+            border-bottom: 1px solid rgba(30, 75, 138, 0.15);
             transition: all 0.4s ease;
         }
 
         header.scrolled {
             padding: 15px 0;
-            background: rgba(13, 17, 23, 0.95);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
 
         .header-container {
@@ -408,7 +369,6 @@
             align-items: center;
         }
 
-        /* ----- BIG KAGOME + ALTERMAGNET LOGO (unchanged) ----- */
         .logo {
             display: flex;
             align-items: center;
@@ -416,7 +376,7 @@
             font-family: 'Inter', sans-serif;
             font-weight: 700;
             font-size: 2.2rem;
-            color: white;
+            color: var(--text-primary);
             letter-spacing: -0.5px;
         }
 
@@ -428,9 +388,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255,255,255,0.02);
+            background: rgba(255,255,255,0.5);
             border-radius: 24px;
-            box-shadow: 0 0 40px rgba(88,166,255,0.3);
+            box-shadow: 0 0 40px rgba(30,75,138,0.25);
             transition: transform 0.4s ease;
         }
 
@@ -446,38 +406,38 @@
             box-shadow: 0 0 20px currentColor;
         }
 
-        .kagome-atom:nth-child(1) { background: #58a6ff; top: 15px; left: 40px; }
-        .kagome-atom:nth-child(2) { background: #bc8cff; top: 30px; right: 25px; }
-        .kagome-atom:nth-child(3) { background: #39c5cf; bottom: 30px; right: 25px; }
-        .kagome-atom:nth-child(4) { background: #ff7b72; bottom: 15px; left: 40px; }
-        .kagome-atom:nth-child(5) { background: #bc8cff; bottom: 30px; left: 10px; }
-        .kagome-atom:nth-child(6) { background: #58a6ff; top: 30px; left: 10px; }
+        .kagome-atom:nth-child(1) { background: #1e4b8a; top: 15px; left: 40px; }
+        .kagome-atom:nth-child(2) { background: #6b21a5; top: 30px; right: 25px; }
+        .kagome-atom:nth-child(3) { background: #0e7490; bottom: 30px; right: 25px; }
+        .kagome-atom:nth-child(4) { background: #b91c6b; bottom: 15px; left: 40px; }
+        .kagome-atom:nth-child(5) { background: #6b21a5; bottom: 30px; left: 10px; }
+        .kagome-atom:nth-child(6) { background: #1e4b8a; top: 30px; left: 10px; }
         .kagome-atom:nth-child(7) {
-            background: white;
+            background: #0f172a;
             width: 24px;
             height: 24px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 30px #fff;
+            box-shadow: 0 0 30px #1e4b8a;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 14px;
-            color: #0d1117;
+            color: white;
             font-weight: bold;
         }
         .kagome-atom:nth-child(7)::after {
             content: "↑↓";
             font-size: 14px;
-            color: #0d1117;
+            color: white;
             font-weight: 800;
         }
 
         .kagome-line {
             position: absolute;
-            background: rgba(255,255,255,0.3);
-            box-shadow: 0 0 10px #58a6ff;
+            background: rgba(15,23,42,0.3);
+            box-shadow: 0 0 10px #1e4b8a;
             height: 2px;
             width: 40px;
             transform-origin: 0 0;
@@ -496,8 +456,8 @@
             font-weight: bold;
             text-shadow: 0 0 10px currentColor;
         }
-        .spin-up { color: #ff7b72; }
-        .spin-down { color: #58a6ff; }
+        .spin-up { color: #b91c6b; }
+        .spin-down { color: #1e4b8a; }
         .spin-up:nth-of-type(1) { top: 5px; left: 15px; transform: rotate(-20deg); }
         .spin-up:nth-of-type(2) { bottom: 5px; right: 15px; transform: rotate(160deg); }
         .spin-down:nth-of-type(1) { top: 5px; right: 15px; transform: rotate(200deg); }
@@ -531,7 +491,7 @@
         }
 
         .nav-links a:hover {
-            color: white;
+            color: var(--text-primary);
         }
 
         .nav-links a:hover::before {
@@ -542,12 +502,11 @@
             display: none;
             background: none;
             border: none;
-            color: white;
+            color: var(--text-primary);
             font-size: 2rem;
             cursor: pointer;
         }
 
-        /* ----- HERO (clean, no highlights, no extra line) ----- */
         .hero {
             padding-top: 180px;
             min-height: 100vh;
@@ -569,15 +528,15 @@
         }
 
         @keyframes pulse {
-            0%,100% { box-shadow: 0 0 0 0 rgba(88,166,255,0.7); }
-            50% { box-shadow: 0 0 0 10px rgba(88,166,255,0); }
+            0%,100% { box-shadow: 0 0 0 0 rgba(30,75,138,0.5); }
+            50% { box-shadow: 0 0 0 10px rgba(30,75,138,0); }
         }
 
         .hero-text h1 {
             font-family: 'Playfair Display', serif;
             font-size: 5rem;
             line-height: 1;
-            background: linear-gradient(135deg, #f0f6fc, #58a6ff, #bc8cff);
+            background: linear-gradient(135deg, #0f172a, #1e4b8a, #6b21a5);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -586,7 +545,7 @@
 
         .hero-text h2 {
             font-size: 2.2rem;
-            color: #ffffff;
+            color: #334155;
             font-weight: 500;
             margin-bottom: 0;
         }
@@ -620,7 +579,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
             transition: left 0.6s;
             z-index: -1;
         }
@@ -642,18 +601,17 @@
 
         .btn-secondary {
             background: var(--card-bg);
-            color: white;
+            color: var(--text-primary);
             border: 1px solid var(--card-border);
             backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
-            background: rgba(88,166,255,0.1);
+            background: rgba(30,75,138,0.05);
             transform: scale(1.05) translateY(-3px);
             border-color: var(--accent-blue);
         }
 
-        /* ----- all other sections (unchanged, original content) ----- */
         .about-content {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -728,7 +686,7 @@
         .publication-item:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-glow);
-            border-color: rgba(188,140,255,0.3);
+            border-color: rgba(107,33,165,0.3);
         }
 
         .publication-title {
@@ -745,7 +703,7 @@
             margin-bottom: 5px;
             display: inline-block;
             padding: 4px 16px;
-            background: rgba(255,123,114,0.08);
+            background: rgba(185,28,107,0.08);
             border-radius: 30px;
         }
 
@@ -757,7 +715,7 @@
         }
 
         .publication-authors strong {
-            background: linear-gradient(135deg, #58a6ff, #bc8cff);
+            background: linear-gradient(135deg, #1e4b8a, #6b21a5);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -784,7 +742,7 @@
 
         .expertise-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(188,140,255,0.3);
+            border-color: rgba(107,33,165,0.3);
             box-shadow: var(--shadow-glow);
         }
 
@@ -852,7 +810,7 @@
 
         .teaching-card:hover, .award-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(188,140,255,0.3);
+            border-color: rgba(107,33,165,0.3);
             box-shadow: var(--shadow-glow);
         }
 
@@ -886,7 +844,7 @@
             font-size: 1.8rem;
             margin-bottom: 30px;
             font-family: 'Playfair Display', serif;
-            color: #fff;
+            color: var(--text-primary);
         }
 
         .contact-info p {
@@ -930,7 +888,7 @@
         footer {
             background: var(--secondary);
             padding: 80px 0 30px;
-            border-top: 1px solid rgba(255,123,114,0.15);
+            border-top: 1px solid rgba(185,28,107,0.15);
         }
 
         .footer-content {
@@ -954,7 +912,7 @@
         .copyright {
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border-top: 1px solid rgba(0,0,0,0.05);
             color: var(--text-muted);
             font-size: 0.9rem;
         }
@@ -996,7 +954,6 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* responsive */
         @media (max-width: 1100px) {
             .hero-text h1 { font-size: 4rem; }
             .about-content { grid-template-columns: 1fr; }
@@ -1004,7 +961,7 @@
 
         @media (max-width: 900px) {
             .nav-links {
-                position: fixed; top: 0; left: -100%; width: 70%; height: 100vh; background: rgba(13,17,23,0.98); flex-direction: column; justify-content: center; align-items: center; transition: left 0.4s; backdrop-filter: blur(20px); border-right: 1px solid #58a6ff;
+                position: fixed; top: 0; left: -100%; width: 70%; height: 100vh; background: rgba(255,255,255,0.98); flex-direction: column; justify-content: center; align-items: center; transition: left 0.4s; backdrop-filter: blur(20px); border-right: 1px solid #1e4b8a;
             }
             .nav-links.active { left: 0; }
             .mobile-menu-btn { display: block; }
@@ -1315,6 +1272,7 @@
                 observer.observe(el);
             });
 
+            // Enhanced particle system: more particles, faster, more connections
             const canvas = document.getElementById('particles-canvas');
             const ctx = canvas.getContext('2d');
             let w = canvas.width = window.innerWidth;
@@ -1324,15 +1282,15 @@
                 constructor() {
                     this.x = Math.random() * w;
                     this.y = Math.random() * h;
-                    this.size = Math.random() * 3 + 1;
-                    this.vx = (Math.random() - 0.5) * 0.3;
-                    this.vy = (Math.random() - 0.5) * 0.3;
-                    this.color = Math.random() > 0.33 ? '#58a6ff' : (Math.random() > 0.5 ? '#bc8cff' : '#39c5cf');
-                    this.alpha = Math.random() * 0.3 + 0.1;
+                    this.size = Math.random() * 4 + 1.5; // slightly larger
+                    this.vx = (Math.random() - 0.5) * 0.8; // faster
+                    this.vy = (Math.random() - 0.5) * 0.8;
+                    this.color = Math.random() > 0.33 ? '#1e4b8a' : (Math.random() > 0.5 ? '#6b21a5' : '#0e7490');
+                    this.alpha = Math.random() * 0.3 + 0.15;
                 }
                 update() {
-                    this.x += this.vx + Math.sin(Date.now()*0.001)*0.05;
-                    this.y += this.vy + Math.cos(Date.now()*0.001)*0.05;
+                    this.x += this.vx + Math.sin(Date.now()*0.002)*0.1; // more wave
+                    this.y += this.vy + Math.cos(Date.now()*0.002)*0.1;
                     if(this.x > w) this.x = 0; else if(this.x < 0) this.x = w;
                     if(this.y > h) this.y = 0; else if(this.y < 0) this.y = h;
                 }
@@ -1344,18 +1302,19 @@
                     ctx.fill();
                 }
             }
-            let particles = Array.from({ length: 80 }, () => new Particle());
+            let particles = Array.from({ length: 120 }, () => new Particle()); // more particles
             function animate() {
                 ctx.clearRect(0,0,w,h);
                 particles.forEach(p => { p.update(); p.draw(); });
-                ctx.strokeStyle = 'rgba(88,166,255,0.05)';
-                ctx.lineWidth = 0.8;
+                // Draw connections between nearby particles (thicker, more opaque)
+                ctx.strokeStyle = 'rgba(30,75,138,0.15)';
+                ctx.lineWidth = 1.2;
                 for(let i=0; i<particles.length; i++) {
                     for(let j=i+1; j<particles.length; j++) {
                         const dx = particles[i].x - particles[j].x;
                         const dy = particles[i].y - particles[j].y;
                         const d = Math.hypot(dx, dy);
-                        if(d < 120) {
+                        if(d < 140) { // increased range
                             ctx.beginPath();
                             ctx.moveTo(particles[i].x, particles[i].y);
                             ctx.lineTo(particles[j].x, particles[j].y);
